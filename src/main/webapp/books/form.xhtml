@@ -7,22 +7,22 @@
 
 <h:form>
 	<div>
-		<h:outputLabel value="Tittle" />
-		<h:inputText />
+		<h:outputLabel value="Title" />
+		<h:inputText value="#{adminBooksBean.book.title}"/>
 	</div>
 	<div>
 		<h:outputLabel value="Description" />
-		<h:inputText rows="4" cols="20"/>
+		<h:inputText rows="4" cols="20" value="#{adminBooksBean.book.description}"/>
 	</div>
 	<div>
-		<h:outputLabel value="Pages" />
-		<h:inputText />
+		<h:outputLabel value="Pages"/>
+		<h:inputText value="#{adminBooksBean.book.pages}" />
 	</div>
 	<div>
 		<h:outputLabel value="Price" />
-		<h:inputText />
+		<h:inputText value="#{adminBooksBean.book.price}"/>
 	</div>
-	<h:commandButton value="Add" />
+	<h:commandButton value="Add" action="#{adminBooksBean.save}" />
 </h:form>
 
 </html>
