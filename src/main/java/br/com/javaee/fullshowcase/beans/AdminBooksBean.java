@@ -28,12 +28,13 @@ public class AdminBooksBean {
 	private List<Integer> authorsIds = new ArrayList<>();
 
 	@Transactional
-	public void save() {
+	public String save() {
 		authorsIds.forEach(authorId -> book.getAuthors().add(new Author(authorId)));
 		bookDao.save(book);
 		System.out.println("Book added: " + book);
 		this.book = new Book();
 		this.authorsIds.clear();
+		return "/books/list?faces-redirect=true";
 	}
 	
 	public List<Author> getAuthors(){
