@@ -8,19 +8,28 @@
 <h:form>
 	<div>
 		<h:outputLabel value="Title" />
-		<h:inputText value="#{adminBooksBean.book.title}"/>
+		<h:inputText value="#{adminBooksBean.book.title}" />
 	</div>
 	<div>
 		<h:outputLabel value="Description" />
-		<h:inputText rows="4" cols="20" value="#{adminBooksBean.book.description}"/>
+		<h:inputText rows="4" cols="20"
+			value="#{adminBooksBean.book.description}" />
 	</div>
 	<div>
-		<h:outputLabel value="Pages"/>
+		<h:outputLabel value="Pages" />
 		<h:inputText value="#{adminBooksBean.book.pages}" />
 	</div>
 	<div>
 		<h:outputLabel value="Price" />
-		<h:inputText value="#{adminBooksBean.book.price}"/>
+		<h:inputText value="#{adminBooksBean.book.price}" />
+	</div>
+	<div>
+		<h:outputLabel value="Authors" />
+		<h:selectManyListbox value="#{adminBooksBean.authorsIds}" 
+		converter="javax.faces.Integer">
+			<f:selectItems value="#{adminBooksBean.authors}" var="author"
+				itemValue="#{author.id}" itemLabel="#{author.name} " />
+		</h:selectManyListbox>
 	</div>
 	<h:commandButton value="Add" action="#{adminBooksBean.save}" />
 </h:form>
