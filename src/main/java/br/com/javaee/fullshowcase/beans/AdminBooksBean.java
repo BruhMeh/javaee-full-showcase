@@ -24,6 +24,8 @@ public class AdminBooksBean {
 	
 	@Inject
 	private AuthorDao authorDao;
+	@Inject
+	private FacesContext facesContext;
 
 	private Book book = new Book();
 	
@@ -33,8 +35,10 @@ public class AdminBooksBean {
 	public String save() {
 		authorsIds.forEach(authorId -> book.getAuthors().add(new Author(authorId)));
 		bookDao.save(book);
-		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Book added"));
+		
+		
+		facesContext.getExternalContext().getFlash().setKeepMessages(true);
+		facesContext.addMessage(null, new FacesMessage("Book added"));
 		
 		return "/books/list?faces-redirect=true";
 	}
