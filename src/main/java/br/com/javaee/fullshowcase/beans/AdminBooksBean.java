@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
@@ -31,9 +33,9 @@ public class AdminBooksBean {
 	public String save() {
 		authorsIds.forEach(authorId -> book.getAuthors().add(new Author(authorId)));
 		bookDao.save(book);
-		System.out.println("Book added: " + book);
-		this.book = new Book();
-		this.authorsIds.clear();
+		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Book added"));
+		
 		return "/books/list?faces-redirect=true";
 	}
 	
