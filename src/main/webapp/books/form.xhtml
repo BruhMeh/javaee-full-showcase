@@ -10,7 +10,7 @@
 <h:form>
 	<div>
 		<h:outputLabel value="Title" />
-		<h:inputText value="#{adminBooksBean.book.title}" required="true" requiredMessage="Title must be informed" />
+		<h:inputText value="#{adminBooksBean.book.title}" required="true" />
 	</div>
 	<div>
 		<h:outputLabel value="Description" />
@@ -19,11 +19,11 @@
 	</div>
 	<div>
 		<h:outputLabel value="Pages" />
-		<h:inputText value="#{adminBooksBean.book.pages}" required="true" requiredMessage="Number of pages must be informed"/>
+		<h:inputText value="#{adminBooksBean.book.pages}" required="true" />
 	</div>
 	<div>
 		<h:outputLabel value="Price" />
-		<h:inputText required="true" requiredMessage="Price must be informed"> value="#{adminBooksBean.book.price}">
+		<h:inputText required="true" value="#{adminBooksBean.book.price}">
 			<f:validateDoubleRange minimum="80"  maximum="500"/>
 		</h:inputText>
 	</div>
