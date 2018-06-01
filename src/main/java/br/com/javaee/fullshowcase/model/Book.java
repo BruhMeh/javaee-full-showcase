@@ -10,19 +10,32 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 public class Book {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@NotBlank
     private String title;
     @Lob
+    @Length(min=10)
+    @NotBlank
     private String description;
+    @DecimalMin("20")
     private BigDecimal price;
     private Integer pages;
     
     @ManyToMany
+    @Size(min=1)
+    @NotNull
     private List<Author> authors = new ArrayList<>();
     
     
