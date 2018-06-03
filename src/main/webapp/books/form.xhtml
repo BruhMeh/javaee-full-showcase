@@ -30,10 +30,10 @@
 	</div>
 	<div>
 		<h:outputLabel value="Authors" />
-		<h:selectManyListbox id="authors" value="#{adminBooksBean.authorsIds}" 
-		converter="javax.faces.Integer">
+		<h:selectManyListbox id="authors" value="#{adminBooksBean.book.authors}" 
+		converter="authorConverter">
 			<f:selectItems value="#{adminBooksBean.authors}" var="author"
-				itemValue="#{author.id}" itemLabel="#{author.name} " />
+				itemValue="#{author}" itemLabel="#{author.name} " />
 		</h:selectManyListbox>
 		<h:message for="authors"/>
 	</div>

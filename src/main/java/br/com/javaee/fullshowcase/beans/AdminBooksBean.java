@@ -1,6 +1,5 @@
 package br.com.javaee.fullshowcase.beans;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -29,13 +28,10 @@ public class AdminBooksBean {
 
 	private Book book = new Book();
 	
-	private List<Integer> authorsIds = new ArrayList<>();
 
 	@Transactional
 	public String save() {
-		authorsIds.forEach(authorId -> book.getAuthors().add(new Author(authorId)));
 		bookDao.save(book);
-		
 		
 		facesContext.getExternalContext().getFlash().setKeepMessages(true);
 		facesContext.addMessage(null, new FacesMessage("Book added"));
@@ -54,14 +50,6 @@ public class AdminBooksBean {
 
 	public void setBook(Book book) {
 		this.book = book;
-	}
-
-	public List<Integer> getAuthorsIds() {
-		return authorsIds;
-	}
-
-	public void setAuthorsIds(List<Integer> authorsIds) {
-		this.authorsIds = authorsIds;
 	}
 
 }
