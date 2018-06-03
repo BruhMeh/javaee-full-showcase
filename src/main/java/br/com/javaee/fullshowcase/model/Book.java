@@ -37,7 +37,7 @@ public class Book {
     private Integer pages;
     
     @Temporal(TemporalType.DATE)
-    private Calendar datePublished =  Calendar.getInstance();
+    private Calendar datePublished;
     
     @ManyToMany
     @Size(min=1)

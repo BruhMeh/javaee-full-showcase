@@ -40,8 +40,7 @@
 	
 	<div>
 		<h:outputLabel value="Date Published" />
-		<h:inputText id="datePublished" required="true" value="#{adminBooksBean.book.datePublished.time}">
-			<f:convertDateTime pattern="dd/MM/yyyy"/>
+		<h:inputText id="datePublished" required="true" value="#{adminBooksBean.book.datePublished}">
 		</h:inputText>
 	</div>
 	<h:commandButton value="Add" action="#{adminBooksBean.save}" />
