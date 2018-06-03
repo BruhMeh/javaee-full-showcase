@@ -2,6 +2,7 @@ package br.com.javaee.fullshowcase.model;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -10,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -32,6 +35,9 @@ public class Book {
     @DecimalMin("20")
     private BigDecimal price;
     private Integer pages;
+    
+    @Temporal(TemporalType.DATE)
+    private Calendar datePublished =  Calendar.getInstance();
     
     @ManyToMany
     @Size(min=1)
@@ -80,6 +86,11 @@ public class Book {
 		return "Book [id=" + id + ", title=" + title + ", description=" + description + ", price=" + price + ", pages="
 				+ pages + ", authors=" + authors + "]";
 	}
-    
+	public Calendar getDatePublished() {
+		return datePublished;
+	}
+	public void setDatePublished(Calendar datePublished) {
+		this.datePublished = datePublished;
+	}
 
 }
