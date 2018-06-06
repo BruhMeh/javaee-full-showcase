@@ -4,44 +4,52 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
-	
-<h:form>
+
+<h:form enctype="multipart/form-data">
 	<div>
 		<h:outputLabel value="Title" />
-		<h:inputText id="title" value="#{adminBooksBean.book.title}" required="true" />
-		<h:message for="title"/>
+		<h:inputText id="title" value="#{adminBooksBean.book.title}"
+			required="true" />
+		<h:message for="title" />
 	</div>
 	<div>
 		<h:outputLabel value="Description" />
 		<h:inputText id="description" rows="4" cols="20"
 			value="#{adminBooksBean.book.description}" />
-			<h:message for="description"/>
+		<h:message for="description" />
 	</div>
 	<div>
 		<h:outputLabel value="Pages" />
-		<h:inputText id="pages" value="#{adminBooksBean.book.pages}" required="true" />
-		<h:message for="pages"/>
+		<h:inputText id="pages" value="#{adminBooksBean.book.pages}"
+			required="true" />
+		<h:message for="pages" />
 	</div>
 	<div>
 		<h:outputLabel value="Price" />
-		<h:inputText id="price" required="true" value="#{adminBooksBean.book.price}">
-			</h:inputText>
-		<h:message for="price"/>
+		<h:inputText id="price" required="true"
+			value="#{adminBooksBean.book.price}">
+		</h:inputText>
+		<h:message for="price" />
 	</div>
 	<div>
 		<h:outputLabel value="Authors" />
-		<h:selectManyListbox id="authors" value="#{adminBooksBean.book.authors}" 
-		converter="authorConverter">
+		<h:selectManyListbox id="authors"
+			value="#{adminBooksBean.book.authors}" converter="authorConverter">
 			<f:selectItems value="#{adminBooksBean.authors}" var="author"
 				itemValue="#{author}" itemLabel="#{author.name} " />
 		</h:selectManyListbox>
-		<h:message for="authors"/>
+		<h:message for="authors" />
 	</div>
-	
 	<div>
 		<h:outputLabel value="Date Published" />
-		<h:inputText id="datePublished" required="true" value="#{adminBooksBean.book.datePublished}">
+		<h:inputText id="datePublished" required="true"
+			value="#{adminBooksBean.book.datePublished}">
 		</h:inputText>
+	</div>
+	<div>
+		<h:outputLabel value="Book Cover" />
+		<h:inputFile value="#{adminBooksBean.bookCover}" id="bookCover"/>
+		<h:message for="bookCover"/>
 	</div>
 	<h:commandButton value="Add" action="#{adminBooksBean.save}" />
 </h:form>

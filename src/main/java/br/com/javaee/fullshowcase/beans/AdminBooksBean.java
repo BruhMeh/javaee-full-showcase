@@ -1,5 +1,6 @@
 package br.com.javaee.fullshowcase.beans;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -7,6 +8,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.Part;
 import javax.transaction.Transactional;
 
 import br.com.javaee.fullshowcase.dao.AuthorDao;
@@ -28,11 +30,13 @@ public class AdminBooksBean {
 
 	private Book book = new Book();
 	
+	private Part bookCover;
+	
 
 	@Transactional
-	public String save() {
+	public String save() throws IOException {
 		bookDao.save(book);
-		
+		bookCover.write("/bookstore/books" + bookCover.getSubmittedFileName());
 		facesContext.getExternalContext().getFlash().setKeepMessages(true);
 		facesContext.addMessage(null, new FacesMessage("Book added"));
 		
@@ -41,7 +45,6 @@ public class AdminBooksBean {
 	
 	public List<Author> getAuthors(){
 		return authorDao.getAuthors();
-		
 	}
 
 	public Book getBook() {
@@ -50,6 +53,14 @@ public class AdminBooksBean {
 
 	public void setBook(Book book) {
 		this.book = book;
+	}
+
+	public Part getBookCover() {
+		return bookCover;
+	}
+
+	public void setBookCover(Part bookCover) {
+		this.bookCover = bookCover;
 	}
 
 }
