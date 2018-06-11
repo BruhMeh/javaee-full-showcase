@@ -15,6 +15,7 @@ import br.com.javaee.fullshowcase.dao.AuthorDao;
 import br.com.javaee.fullshowcase.dao.BookDao;
 import br.com.javaee.fullshowcase.model.Author;
 import br.com.javaee.fullshowcase.model.Book;
+import br.com.javaee.fullshowcase.utils.FileSaver;
 
 @Named
 @RequestScoped
@@ -36,9 +37,8 @@ public class AdminBooksBean {
 	@Transactional
 	public String save() throws IOException {
 		bookDao.save(book);
-		String coverPath = "/bookstore/books" + bookCover.getSubmittedFileName();
-		bookCover.write(coverPath);
-		book.setCoverPath(coverPath);
+		FileSaver fileSaver = new FileSaver();
+		book.setCoverPath(fileSaver.write(bookCover, "books"));
 		facesContext.getExternalContext().getFlash().setKeepMessages(true);
 		facesContext.addMessage(null, new FacesMessage("Book added"));
 		
