@@ -39,6 +39,8 @@ public class Book {
     @Temporal(TemporalType.DATE)
     private Calendar datePublished;
     
+    private String coverPath;
+    
     @ManyToMany
     @Size(min=1)
     @NotNull
@@ -91,6 +93,12 @@ public class Book {
 	}
 	public void setDatePublished(Calendar datePublished) {
 		this.datePublished = datePublished;
+	}
+	public String getCoverPath() {
+		return coverPath;
+	}
+	public void setCoverPath(String coverPath) {
+		this.coverPath = coverPath;
 	}
 
 }

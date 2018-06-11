@@ -36,7 +36,9 @@ public class AdminBooksBean {
 	@Transactional
 	public String save() throws IOException {
 		bookDao.save(book);
-		bookCover.write("/bookstore/books" + bookCover.getSubmittedFileName());
+		String coverPath = "/bookstore/books" + bookCover.getSubmittedFileName();
+		bookCover.write(coverPath);
+		book.setCoverPath(coverPath);
 		facesContext.getExternalContext().getFlash().setKeepMessages(true);
 		facesContext.addMessage(null, new FacesMessage("Book added"));
 		
